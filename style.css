@@ -1,0 +1,240 @@
+@import url('http://fonts.googleapis.com/css?family=Raleway:400,200');
+body {
+    background: white;
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+}
+.transition { transition: .7s cubic-bezier(.3, 0, 0, 1.3) }
+.card {
+    background-color: #fff;
+    bottom: 0;
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.3);
+    height: 350px;
+    left: 0;
+    margin: auto;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 300px;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    /*Making text in the card unselectable*/
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.card:hover {
+    height: 350px;
+    box-shadow: 0px 0px 20px 4px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0px 0px 20px 4px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 0px 20px 4px rgba(0,0,0,0.3);
+}
+.card:hover .cta-container {
+    display: inline;
+    margin-top: 380px;
+}
+.card:hover .card_picture {
+    opacity: 1;
+    background-size: cover;
+    /*margin-top: -130px;*/
+}
+.card:hover .title {
+    /*font-weight: bold;*/
+    /*padding: 5px;*/
+}
+.card:hover .title small { 
+    color: #fff 
+}
+.card:hover .card_content { 
+
+}
+.card_picture {
+    background: url('http://lorempixel.com/400/200') no-repeat center bottom;
+    background-color: #3487f7;
+    opacity: 0.8;
+    background-size: cover;
+    /*border-radius: 50%;*/
+    height: 350px;
+    margin-left: -75px;
+    margin-top: -170px;
+    position: absolute;
+    width: 450px;
+}
+
+.title {
+    color: #3487f7;
+    font-family: "Arial", "新細明體", PMingLiU, sans-serif;
+    /*font-family: "Arial Black", Gadget, sans-serif;*/
+    font-size: 24px;
+    font-weight: normal;
+    margin-top: 190px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 9999;
+}
+.card_content {
+    color: rgba(0,0,0,.6);
+    font-family: "Arial Black", Gadget, sans-serif;
+    /*font-family: 'Raleway', sans-serif;*/
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 230px;
+    position: absolute;
+    text-align: center;
+    z-index: 9999;
+}
+
+.left_corner_text {
+    position: absolute;
+    display: inline;
+    float: left;
+    bottom: 2px;
+    left: 2px;
+    margin: 0px auto;
+}
+
+.right_corner_text {
+    position: absolute;
+    display: inline;
+    float: right;
+    bottom: 2px;
+    right: 2px;
+    margin: 0px auto;
+}
+
+
+
+
+/* --- css for header ---  */
+/* Remove margins and padding from the list, and add a black background color */
+header {
+    margin: 0;
+    padding: 0;
+}
+
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+/* Float the list items side by side */
+ul.topnav li {float: left; }
+
+/* Style the links inside the list items */
+ul.topnav li a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.topnav li a:hover {background-color: #555;}
+
+/* Hide the list item that contains the link that should open and close the topnav on small screens */
+ul.topnav li.icon {display: none;}
+
+/* When the screen is less than 680 pixels wide, hide all list items, except for the first one ("Home"). Show the list item that contains the link to open and close the topnav (li.icon) */
+@media screen and (max-width:680px) {
+  ul.topnav li:not(:first-child) {display: none;}
+  ul.topnav li.icon {
+    float: right;
+    display: inline-block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens */
+@media screen and (max-width:680px) {
+  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}
+
+.logo {
+    position: relative;
+    float: middle;
+    height: 45px;
+    width: 45px;
+    cursor: pointer;
+    padding: 0px 10px;
+}
+
+
+
+
+
+/*--- css for sidebar ---*/
+/* The side navigation menu */
+.sidenav {
+    display: inline-block;
+    position: absolute; /* Stay in place */
+    height: 100%; /* 100% Full-height */
+    width: 200px; /* 0 width - change this with JavaScript */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black*/
+    /*overflow-x: hidden;  Disable horizontal scroll */
+    padding-top: 30px; /* Place content 60px from the top */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    display: inline-block;
+    padding: 20px;
+    width: 250px;
+    margin-left: 250px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+.progress {
+    margin: 0 auto;
+    display: block;
+    position: relative;
+}
