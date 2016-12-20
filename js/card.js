@@ -1,5 +1,6 @@
 let daysLeft = 7;
-let amountOfCard = 12;
+let amountOfCard = 6;
+let delayInterval = 300;	// For the animation of the progress bars. In ms.
 
 let cardHTML = '<!-- Card Picture -->\
 				<div class="card_picture transition"></div>\
@@ -9,24 +10,21 @@ let cardHTML = '<!-- Card Picture -->\
 				<p class="transition card_content">車證工本費僅50元，但車管會一學期車證費卻收到300元... ~"~</p>\
 				<!-- Progress bar -->\
 				<div class="progress">\
-			  	<div class="progress-bar progress-bar-success" role="progressbar" style="width:40%">\
-					Free Space\
+			  		<div class="progress-bar progress-bar-danger" role="progressbar" style="width:0%">\
+						反對\
+					</div>\
+					<div class="progress-bar progress-bar-success" role="progressbar" style="width:0%">\
+						贊成\
+					</div>\
 				</div>\
-				<div class="progress-bar progress-bar-warning" role="progressbar" style="width:10%">\
-					Warning\
-				</div>\
-				<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">\
-					Danger\
-				</div>\
-			</div>\
-			<!-- Status -->\
-			<div class="status_bar">\
-				<p class="days_left">還剩Err天</p>\
-				<p class="right_corner_text">\
-					<i class="fa fa-check-square-o" aria-hidden="true">  Err  </i>\
-					<i class="fa fa-comment" aria-hidden="true">  Err  </i> \
-				</p>\
-			</div>';
+				<!-- Status -->\
+				<div class="status_bar">\
+					<p class="days_left">還剩Err天</p>\
+					<p class="right_corner_text">\
+						<i class="fa fa-check-square-o" aria-hidden="true">  Err  </i>\
+						<i class="fa fa-comment" aria-hidden="true">  Err  </i> \
+					</p>\
+				</div>';
 
 $(document).ready(function(){
 
@@ -43,10 +41,14 @@ function generateCard( amount_of_card ) {
 		.attr("id", "card"+i )
 		.addClass("card transition")
 		.html(cardHTML);
-		// Randomize the amounts of the comments, days left, and the votes. 
+
+		// Randomize days left, the amounts of the comments, vote ratio, and the amount of votes. 
+		let agreeRatio = randomNum(0,100);
 		$(card).find(".days_left").html('還剩'+ emphasizeDaysLeft(randomNum(1,30)) +'天');
-		$(card).find(".fa.fa-comment").text(" " + randomNum(0,200) + " ");
-		$(card).find(".fa.fa-check-square-o").text(" " + randomNum(0,300) + " ");
+		$(card).find(".fa.fa-comment").text(" " + randomNum(0,500) + " ");
+		$(card).find(".progress-bar.progress-bar-success").delay( delayInterval/2 + delayInterval * i ).animate({width: agreeRatio+"%"}, 350, "linear")
+		$(card).find(".progress-bar.progress-bar-danger").delay( delayInterval + delayInterval * i ).animate({width: (100-agreeRatio)+"%"}, 350, "linear")
+		$(card).find(".fa.fa-check-square-o").text(" " + randomNum(0,2000) + " ");
 
 		// append the card to the card container
 		$(".card_container").append(card);
@@ -55,7 +57,7 @@ function generateCard( amount_of_card ) {
 
 function emphasizeDaysLeft(days_left) {
 	if(days_left >= 10){
-		return days_left.toString();
+		return '<b>' + days_left.toString() + '</b>';
 	} 
 	else if(days_left >= 5) {
 		return '<b style="color: orange; font-size: 22px;">'+ days_left.toString() +'</b>';

@@ -60,9 +60,7 @@ body {
     /*margin-top: 230px;*/
     /*padding: 5px;*/
 }
-.card:hover .title small { 
-    color: #fff 
-}
+
 .card:hover .card_content { 
     /*margin-top: 270px; */
 }
@@ -80,7 +78,8 @@ body {
 }
 
 .title {
-    color: #3487f7;
+    /*color: #3487f7;*/
+    color: black;
     font-family: "微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", AppleGothic, Dotum, Lucida Grande, Verdana Sans-serif;
     /*font-family: "Arial", "新細明體", PMingLiU, sans-serif;*/
     /*font-family: "Arial Black", Gadget, sans-serif;*/
@@ -104,16 +103,6 @@ body {
     text-align: center;
     z-index: 9999;
 
-    /*For content*/
-
-}
-.cta-container {
-    display: none;
-    margin-top: 320px;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    z-index: 9999;
 }
 
 
@@ -124,8 +113,8 @@ body {
     float: left;
     bottom: 10px;
     left: 10px;
-    /*margin: 0px auto;*/
-    border: 10px;
+    border: 0px;
+    margin: 5px auto;
 }
 
 .right_corner_text {
@@ -135,8 +124,8 @@ body {
     float: right;
     bottom: 10px;
     right: 10px;
-    /*margin: 0px auto;*/
     border: 10px;
+    margin: 5px auto;
 }
 
 .space {
@@ -147,9 +136,7 @@ body {
     background: transparent;
     text-align: center;
     position: relative;
-    display: block;
-    border: 0px 10px;
-    transition: 
+    /*transition: .7s ease;*/
 }
 
 .status_bar {
