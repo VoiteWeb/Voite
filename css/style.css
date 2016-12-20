@@ -5,7 +5,11 @@ body {
 .transition { transition: .7s cubic-bezier(.3, 0, 0, 1.3) }
 .card {
     background-color: #fff;
-    bottom: 0;
+    text-align: center;
+    bottom: center;
+    right: center;
+    left: center;
+    top: center;
     /* box-shadow property:;    
     共有 6 個特性值。 前面 4 個都是尺寸值 (length，不接受 %) ，依序表示:
     水平位移距離 (x) 、垂直位移距離 (y) 、模糊強度 (blur) 、擴散強度 (spread) ，不可被其它的值插進其間。
@@ -16,13 +20,12 @@ body {
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
   -webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
   -moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
-    height: 350px;
-    left: 0;
-    margin: auto;
+    height: 400px;
+    margin: 0px auto;
     overflow: hidden;
-    position: absolute;
-    right: 0;
-    top: 0;
+    position: relative;
+    display: inline-block;
+
     width: 300px;
     border-radius: 5px;
     cursor: pointer;
@@ -34,12 +37,15 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    margin: 10px;
 }
 .card:hover {
-    height: 350px;
+/*    height: 350px;*/
     box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.3);
     -webkit-box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.3);
     -moz-box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.3);
+
 }
 
 .card:hover .card_picture {
@@ -66,11 +72,11 @@ body {
     opacity: 0.5;
     background-size: cover;
     /*border-radius: 50%;*/
-    height: 350px;
-    margin-left: -75px;
-    margin-top: -170px;
-    position: absolute;
-    width: 450px;
+    height: 200px;
+/*    margin-left: -75px;
+    margin-top: -170px;*/
+    position: relative;
+    width: 100%;
 }
 
 .title {
@@ -80,8 +86,8 @@ body {
     /*font-family: "Arial Black", Gadget, sans-serif;*/
     font-size: 24px;
     font-weight: bold;
-    margin-top: 190px;
-    position: absolute;
+/*    margin-top: 190px;*/
+    position: relative;
     text-align: center;
     width: 100%;
     z-index: 9999;
@@ -93,8 +99,8 @@ body {
     /*font-family: 'Raleway', sans-serif;*/
     font-size: 14px;
     font-weight: normal;
-    margin-top: 230px;
-    position: absolute;
+    /*margin-top: 230px;*/
+    position: relative;
     text-align: center;
     z-index: 9999;
 
@@ -118,7 +124,8 @@ body {
     float: left;
     bottom: 10px;
     left: 10px;
-    margin: 0px auto;
+    /*margin: 0px auto;*/
+    border: 10px;
 }
 
 .right_corner_text {
@@ -128,9 +135,25 @@ body {
     float: right;
     bottom: 10px;
     right: 10px;
-    margin: 0px auto;
+    /*margin: 0px auto;*/
+    border: 10px;
 }
 
 .space {
 
+}
+
+.progress {
+    background: transparent;
+    text-align: center;
+    position: relative;
+    display: block;
+    border: 0px 10px;
+    transition: 
+}
+
+.status_bar {
+    position: relative;
+    width: 100%;
+    height: 40px;
 }
