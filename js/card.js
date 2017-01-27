@@ -1,6 +1,8 @@
 let daysLeft = 7;
 let amountOfCard = 6;
-let delayInterval = 300;	// For the animation of the progress bars. In ms.
+// For the animation of the progress bars. In ms.
+let delayInterval = 500;	
+let animationPeriod = 600;
 
 let cardHTML = '<!-- Card Picture -->\
 				<div class="card_picture transition"></div>\
@@ -12,6 +14,8 @@ let cardHTML = '<!-- Card Picture -->\
 				<div class="rateBar">\
   					<div class="agreeBar"></div>\
   					<div class="disagreeBar"></div>\
+	  				<span class="agreeText">贊成</span>\
+  					<span class="disagreeText">反對</span>\
 				</div>\
 				<!-- Status -->\
 				<div class="status_bar">\
@@ -48,9 +52,10 @@ function generateCard( amount_of_card ) {
 		}
 		$(card).find(".days_left").html('還剩'+ emphasizeDaysLeft(randomNum(1,30)) +'天');
 		$(card).find(".fa.fa-comment").text(" " + randomNum(0,500) + " ");
-		$(card).find(".agreeBar").delay( delayInterval/2 + delayInterval * i ).animate({width: agreeRatio+"%"}, 350, "swing");
-		$(card).find(".disagreeBar").delay( delayInterval + delayInterval * i ).animate({width: (100-agreeRatio)+"%"}, 350, "swing");
+		$(card).find(".agreeBar").delay( delayInterval/2 + delayInterval * i ).animate({width: agreeRatio+"%"}, animationPeriod, "swing");
+		$(card).find(".disagreeBar").delay( delayInterval + delayInterval * i ).animate({width: (100-agreeRatio)+"%"}, animationPeriod, "swing");
 		$(card).find(".fa.fa-check-square-o").text(" " + randomNum(0,2000) + " ");
+
 
 		// append the card to the card container
 		$(".card_container").append(card);
@@ -62,10 +67,12 @@ function emphasizeDaysLeft(days_left) {
 		return '<b>' + days_left.toString() + '</b>';
 	} 
 	else if(days_left >= 5) {
-		return '<b style="color: orange; font-size: 22px;">'+ days_left.toString() +'</b>';
+		return '<b style="color: orange;">'+ days_left.toString() +'</b>';
+		// return '<b style="color: orange; font-size: 22px;">'+ days_left.toString() +'</b>';
 	}
 	else {
-		return '<b style="color: red; font-size: 28px;">'+ days_left.toString() +'</b>';
+		return '<b style="color: red;">'+ days_left.toString() +'</b>';
+		// return '<b style="color: red; font-size: 28px;">'+ days_left.toString() +'</b>';
 	}
 }
 

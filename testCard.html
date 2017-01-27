@@ -13,7 +13,7 @@
 	<!-- Bootstrap cdn minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<style>
-		#rateBar {
+		.rateBar {
 			margin: 0 auto;
 			text-align: center;
 		    position: relative;
@@ -23,7 +23,7 @@
 		    /*rateBar background color: #DFDFDF*/
 		    background-color: #DFDFDF;
 		}
-		#agreeBar {
+		.agreeBar {
 			float: right;
 		    position: relative;
 		    border-style: solid;
@@ -35,7 +35,7 @@
 		    /*主視覺黃色: #ffc832*/
 		    background-color: #ffc832;	
 		}
-		#disagreeBar {
+		.disagreeBar {
 			float: left;
 		    position: relative;		    
 		    border-style: solid;
@@ -45,7 +45,18 @@
 		    width: 28%;
 		    height: 100%;
 		    /*主視覺黃色: #ffc832*/
-		    background-color: red;	
+	        /*測試用灰色: #525252*/
+    		background-color: #525252; 
+		}
+		.agreeText {			
+			float: right;
+			font-family: "malgun gothic", simhei;
+			color: #ffc832;
+		}
+		.disagreeText {
+			float: left;
+			font-family: "malgun gothic", simhei;
+			color: #525252;
 		}
 	</style>
 
@@ -62,9 +73,11 @@
 			<!-- Description -->
 			<p class="transition card_content">車證工本費僅50元，但車管會一學期車證費卻收到300元... </p>
 			<!-- Progress bar test -->
-			<div id="rateBar">
-  				<div id="agreeBar"></div>
-  				<div id="disagreeBar"></div>
+			<div class="rateBar">
+  				<div class="agreeBar"></div>
+  				<div class="disagreeBar"></div>
+  				<span class="agreeText">贊成</span>
+  				<span class="disagreeText">反對</span>
 			</div>
 			<!-- Progress bar -->
 <!-- 			<div class="progress">
@@ -84,6 +97,8 @@
 				</p>
 			</div>
 		</div>
+
+
 
 		<!-- Card template -->
 		<div class="card transition">
