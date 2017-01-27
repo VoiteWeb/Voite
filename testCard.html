@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test Card</title>
+	<!-- Material Design -->
+	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"> -->
+	<!-- Font-awesome cdn minified CSS -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Bootstrap cdn minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+		#rateBar {
+			margin: 0 auto;
+			text-align: center;
+		    position: relative;
+		    border-radius: 10px;
+		    width: 95%;
+		    height: 15px;
+		    /*rateBar background color: #DFDFDF*/
+		    background-color: #DFDFDF;
+		}
+		#agreeBar {
+			float: right;
+		    position: relative;
+		    border-style: solid;
+    		border-width: 4px 4px 4px 0;	/*0代表左邊之border設為0*/
+    		border-color: #DFDFDF;	/*border與背景相同顏色*/
+		    border-radius: 0 10px 10px 0;	/*右上及右下角弄成圓弧*/
+		    width: 72%;
+		    height: 100%;
+		    /*主視覺黃色: #ffc832*/
+		    background-color: #ffc832;	
+		}
+		#disagreeBar {
+			float: left;
+		    position: relative;		    
+		    border-style: solid;
+    		border-width: 4px 0 4px 4px;	/*0代表右邊之border設為0*/
+    		border-color: #DFDFDF;	/*border與背景相同顏色*/
+		    border-radius: 10px 0 0 10px;	/*左上及左下角弄成圓形*/
+		    width: 28%;
+		    height: 100%;
+		    /*主視覺黃色: #ffc832*/
+		    background-color: red;	
+		}
+	</style>
+
+</head>
+<body>
+	<div class="card_container">
+
+		<!-- TEST Card template -->
+		<div class="card transition">
+			<!-- Card Picture -->
+			<div class="card_picture transition"></div>
+			<!-- Title -->
+			<h2 class="title transition">您覺得車管會收300元合理嗎?</h2>
+			<!-- Description -->
+			<p class="transition card_content">車證工本費僅50元，但車管會一學期車證費卻收到300元... </p>
+			<!-- Progress bar test -->
+			<div id="rateBar">
+  				<div id="agreeBar"></div>
+  				<div id="disagreeBar"></div>
+			</div>
+			<!-- Progress bar -->
+<!-- 			<div class="progress">
+		  		<div class="progress-bar progress-bar-danger" role="progressbar" style="width:0%">\
+					反對
+				</div>
+				<div class="progress-bar progress-bar-success" role="progressbar" style="width:0%">\
+					贊成
+				</div>
+			</div> -->
+			<!-- Status -->
+			<div class="status_bar">
+				<p class="days_left">還剩Err天</p>
+				<p class="right_corner_text">
+					<i class="fa fa-check-square-o" aria-hidden="true">  Err  </i>
+					<i class="fa fa-comment" aria-hidden="true">  Err  </i> 
+				</p>
+			</div>
+		</div>
+
+		<!-- Card template -->
+		<div class="card transition">
+				<!-- Card Picture -->
+				<div class="card_picture transition"></div>
+				<!-- Title -->
+				<h2 class="title transition">您覺得車管會收300元合理嗎?</h2>
+				<!-- Description -->
+				<p class="transition card_content">車證工本費僅50元，但車管會一學期車證費卻收到300元... </p>
+				<!-- Progress bar -->
+				<div class="progress">
+			  		<div class="progress-bar progress-bar-danger" role="progressbar" style="width:0%">\
+						反對
+					</div>
+					<div class="progress-bar progress-bar-success" role="progressbar" style="width:0%">\
+						贊成
+					</div>
+				</div>
+				<!-- Status -->
+				<div class="status_bar">
+					<p class="days_left">還剩Err天</p>
+					<p class="right_corner_text">
+						<i class="fa fa-check-square-o" aria-hidden="true">  Err  </i>
+						<i class="fa fa-comment" aria-hidden="true">  Err  </i> 
+					</p>
+				</div>
+		</div>
+
+	</div>
+	
+	<!-- Material Design -->
+	<!-- <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script> -->
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- Custom js -->
+	<!-- <script src="js/card.js"></script> -->
+	<script>
+		
+	</script>
+</body>
+</html>
