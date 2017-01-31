@@ -1,3 +1,11 @@
+
+// 需要再修正的地方:
+// 1. 剩下天數在剩下個位數天數時(數字放大時)會擠到上面bar的版面
+// 	->暫時先將各位數剩餘天數字體設為一樣了，之後再想辦法
+// 2. bar的"贊成"與"反對"的字樣在動畫時會跟著跑(雖然這樣子看起來是還不錯看0_0)
+
+// --- 顯示卡片 --- 
+
 let daysLeft = 7;
 let amountOfCard = 6;
 // For the animation of the progress bars. In ms.
@@ -26,11 +34,6 @@ let cardHTML = '<!-- Card Picture -->\
 					</p>\
 				</div>';
 
-$(document).ready(function(){
-
-	generateCard(amountOfCard);
-
-});
 
 function generateCard( amount_of_card ) {
 	for(let i=0; i<amount_of_card; i++) {
@@ -64,7 +67,8 @@ function generateCard( amount_of_card ) {
 
 function emphasizeDaysLeft(days_left) {
 	if(days_left >= 10){
-		return '<b>' + days_left.toString() + '</b>';
+		// #137300: 墨綠色
+		return '<b style="color: #137300;">' + days_left.toString() + '</b>';
 	} 
 	else if(days_left >= 5) {
 		return '<b style="color: orange;">'+ days_left.toString() +'</b>';
@@ -84,3 +88,47 @@ function randomNum( min, max) {
 	}
 	return Math.floor( (max-min+1) * Math.random() + min);
 }
+
+
+// --- 顯示卡片 END ---
+
+// --- 讀取卡片的資訊 ---
+
+function getCardsInfo(){
+	getCardsIssueTitle();
+}
+
+function getCardsIssueTitle(){
+	for(let i=0;;i++){
+		let card = $("#card" + i);
+		if( !card ) break;	// 讀取完所有的卡片了->跳出for loop
+		$.ajax({
+			url: 'https://stormy-fjord-31975.herokuapp.com/apis/issue',
+			type: "GET",
+			dataType: 'json',
+			xhrFields: {
+			  withCredentials: true
+			},
+			success: function(response){
+			  console.log(response);
+			  card.html( response.issueList[0].title );
+			},
+			error:function(xhr, ajaxOptions, thrownError){ 
+			    alert(xhr.status); 
+			    alert(thrownError); 
+			}
+		});		
+	}
+
+}
+
+// --- 讀取卡片的資訊 END ---
+
+// --- Main ---
+
+$(document).ready(function(){
+
+	generateCard(amountOfCard);
+	getCardsInfo();
+
+});
