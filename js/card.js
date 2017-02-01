@@ -100,24 +100,27 @@ function getCardsInfo(){
 
 function getCardsIssueTitle(){
 	for(let i=0;;i++){
-		let card = $("#card" + i);
-		if( !card ) break;	// 讀取完所有的卡片了->跳出for loop
-		$.ajax({
-			url: 'https://stormy-fjord-31975.herokuapp.com/apis/issue',
-			type: "GET",
-			dataType: 'json',
-			xhrFields: {
-			  withCredentials: true
-			},
-			success: function(response){
-			  console.log(response);
-			  card.html( response.issueList[0].title );
-			},
-			error:function(xhr, ajaxOptions, thrownError){ 
-			    alert(xhr.status); 
-			    alert(thrownError); 
-			}
-		});		
+		if( $("#card" + i).length ) {
+			$.ajax({
+				url: 'https://stormy-fjord-31975.herokuapp.com/apis/issue',
+				type: "GET",
+				dataType: 'json',
+				xhrFields: {
+				  withCredentials: true
+				},
+				success: function(response){
+					console.log(response);
+					$("#card" + i).html( response.issueList[0].title );
+				},
+				error:function(xhr, ajaxOptions, thrownError){ 
+				    alert(xhr.status); 
+				    alert(thrownError); 
+				}
+			});	
+		} else {	// 讀取完所有的卡片了->跳出for loop
+			break;
+		}	
+	
 	}
 
 }
