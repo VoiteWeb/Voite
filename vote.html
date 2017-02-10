@@ -51,23 +51,37 @@
 		}else if(obj == "neutral"){
 			document.getElementById("yes").style.color="#000000";
 			document.getElementById("no").style.color="#000000";
-			my_position = "2";//立場為中立		
+			my_position = "2";//立場為中立
 		}else if(obj == "no"){
 			document.getElementById("yes").style.color="#000000";
-			document.getElementById("neutral").style.color="#000000";	
-			my_position = "3";//立場為反對		
+			document.getElementById("neutral").style.color="#000000";
+			my_position = "3";//立場為反對
 		}
 	}
 
 	function sendVote(){
 		my_reason = document.getElementById("reason").value;//取得理由內容
-
+		console.log(my_position);
 		$.ajax({
 			url: 'https://stormy-fjord-31975.herokuapp.com/apis/vote',
 			type: 'POST',
-			issue_id: '585cfb320935491100db70b0',
-			position: my_position,
-			reason: my_reason,
+			dataType:'json',
+			xhrFields: {
+				withCredentials: true
+			},
+			data:{
+				issue_id: '585cfb320935491100db70b0',
+				position: my_position,
+				reason: my_reason
+			},
+			success: function(response){
+				console.log(response);
+				document.getElementById("message").innerHTML = response.err;
+			},
+			 error:function(xhr, ajaxOptions, thrownError){
+					alert(xhr.status);
+					alert(thrownError);
+			 }
 		});
 	}
 </script>
@@ -97,6 +111,7 @@
 	<br>
 	<img src="vote.png" class="img-responsive vote_pic" style="cursor: pointer;" onclick="sendVote();" alt="Responsive image">
       <div class="modal-footer">
+				<span id ="message"></span>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
