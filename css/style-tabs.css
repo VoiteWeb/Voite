@@ -1,0 +1,185 @@
+ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.abgne_tab {
+	clear: left;
+	margin: 10px 0;
+	font-family: Microsoft JhengHei;
+	font-size: 15px;
+}
+ul.tabs {
+	width: 100%;
+	height: 32px;
+	border-bottom: 2px solid #ffc832;
+}
+ul.tabs li {
+	float: left;
+	height: 31px;
+	line-height: 31px;
+	overflow: hidden;
+	position: relative;
+	border-bottom: 2px solid #fbe3a2;
+	margin-bottom: -2px;	/* 讓 li 往下移來遮住 ul 的部份 border-bottom */
+	border: none;
+	border-left: none;
+	background: #fff;
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
+}
+ul.tabs li a {
+	display: block;
+	padding: 0 20px;
+	color: #000;
+	border: 1px solid #fff;
+	text-decoration: none;
+}
+ul.tabs li a:hover {
+	background: #ccc;
+}
+ul.tabs li.active  {
+	background: #fff;
+	border-bottom: 2px solid #ddd;
+	margin-bottom: -2px;	
+	border: 1px solid #fbe3a2;
+}
+ul.tabs li.active a:hover {
+	background: #fff;
+}
+div.tab_container {
+	clear: left;
+	width: 100%;
+	background: #fff;
+}
+div.tab_container .tab_content {
+	padding: 30px;
+	display: block;
+	position: relative;
+}
+div.tab_container .tab_content h2 {
+	margin: 0 0 20px;
+}
+.emo{
+	float: left;
+}
+.name{
+	float: left;
+	margin-left: 10px;
+}
+.message{
+	float:left;
+	margin-left: 20px;
+}
+.timestamp{
+	float:right;
+}
+.fixed{
+	position: fixed;
+  	bottom: 20px;
+  	right: 20px;
+  	background-color: #ffc832;
+  	color:white;
+    border: none;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 6px;
+}
+.fade-window{
+	position: fixed;
+  	bottom: 20px;
+  	right: 20px;
+}
+.modal-title{
+	font-size: 16px;
+	font-family: Microsoft JhengHei;
+	float: left;
+	padding-top:10px;
+}
+.icon{
+	font-size: 20px;
+	float: left;
+	padding:12px;
+	border: none;
+	background-color: #EFEFEF;
+}
+.icon:hover{
+	border-bottom: 2px solid #ffc832;
+}
+.icon:focus{
+	border-bottom: 2px solid #ffc832;
+}
+.text{
+	padding:10px;
+	width:100%;
+	height:100px;
+	border: none;
+}
+.btn{
+	background-color: #ffc832;
+	font-family: Microsoft JhengHei;
+	border: none;
+	text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+.modal-content{
+	background-color: #EFEFEF;
+}
+.tab2-title{
+	text-align: center;
+	font-size: 30px;
+	font-family: Microsoft JhengHei;
+}
+.comment{
+	font-size: 15px;
+	border:1px solid #E0E0E0;
+	border-radius: 4px;
+	padding:10px;
+	margin: 10px;
+}
+.tag-container{
+	
+}
+.classify{
+	border: 2px solid;
+	border-radius: 12px; 
+	margin: 10px;
+	padding:2px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.vote{
+	border: 2px solid;
+	border-radius: 12px; 
+	margin: 10px;
+	padding:2px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.tag-btn{
+	background-color: white;
+	color: black;
+	font-family: Microsoft JhengHei;
+	border: none;
+	text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+.classify-tag-btn:hover{
+	border-bottom: 2px solid #ffc832;
+}
+.classify-tag-btn:focus{
+	outline:none;
+	border-bottom: 2px solid #ffc832;
+}
+.vote-tag-btn:hover{
+	border-bottom: 2px solid #ffc832;
+}
+.vote-tag-btn:focus{
+	outline:none;
+	border-bottom: 2px solid #ffc832;
+}

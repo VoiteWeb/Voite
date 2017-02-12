@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我要投票</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<style>
+.option{
+	border: 2px solid;
+	margin: 15px 15px;
+	height: 55px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 18px;
+}
+.vote{
+	display: flex;
+	justify-content: center;
+	/*align-items: center;*/
+
+}
+.vote_pic{
+	max-width: 200px;
+	display: flex;
+	justify-content: center;
+}
+
+</style>
+
+<script>
+	var my_position;
+	var my_reason;
+
+	function checkoption(obj){
+		var click = document.getElementById(obj);
+		click.style.color="#ffc832";
+
+		if (obj == "yes"){
+			document.getElementById("neutral").style.color="#000000";
+			document.getElementById("no").style.color="#000000";
+			my_position = "1";//立場為贊成
+		}else if(obj == "neutral"){
+			document.getElementById("yes").style.color="#000000";
+			document.getElementById("no").style.color="#000000";
+			my_position = "2";//立場為中立
+		}else if(obj == "no"){
+			document.getElementById("yes").style.color="#000000";
+			document.getElementById("neutral").style.color="#000000";
+			my_position = "3";//立場為反對
+		}
+	}
+
+	function sendVote(){
+		my_reason = document.getElementById("reason").value;//取得理由內容
+		console.log(my_position);
+		$.ajax({
+			url: 'https://stormy-fjord-31975.herokuapp.com/apis/vote',
+			type: 'POST',
+			dataType:'json',
+			xhrFields: {
+				withCredentials: true
+			},
+			data:{
+				issue_id: '585cfb320935491100db70b0',
+				position: my_position,
+				reason: my_reason
+			},
+			success: function(response){
+				console.log(response);
+				document.getElementById("message").innerHTML = response.err;
+			},
+			 error:function(xhr, ajaxOptions, thrownError){
+					alert(xhr.status);
+					alert(thrownError);
+			 }
+		});
+	}
+</script>
+</head>
+<body>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  我要投票
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">我要投票</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row vote">
+  			<div class="col-md-3 option" id="yes" style="cursor: pointer;" onclick="checkoption('yes');">贊成</div></a>
+  			<div class="col-md-3 option" id="neutral" style="cursor: pointer;" onclick="checkoption('neutral');">中立</div></a>
+  			<div class="col-md-3 option" id="no" style="cursor: pointer;" onclick="checkoption('no');">反對</div></a>
+      </div>
+     <p>我的理由</p>
+	<textarea class="form-control" id="reason" rows="3"></textarea>
+	<br>
+	<img src="vote.png" class="img-responsive vote_pic" style="cursor: pointer;" onclick="sendVote();" alt="Responsive image">
+      <div class="modal-footer">
+				<span id ="message"></span>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel=stylesheet type="text/css" href="style-tabs.css">
+		
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<style>
+		
+	</style>
+	<script>
+
+		$(function(){
+	// 預設顯示第一個 Tab
+	var _showTab = 0;
+	$('.abgne_tab').each(function(){
+		// 目前的頁籤區塊
+		var $tab = $(this);
+ 
+		var $defaultLi = $('ul.tabs li', $tab).eq(_showTab).addClass('active');
+		$($defaultLi.find('a').attr('href')).siblings().hide();
+ 
+		// 當 li 頁籤被點擊時...
+		// 若要改成滑鼠移到 li 頁籤就切換時, 把 click 改成 mouseover
+		$('ul.tabs li', $tab).click(function() {
+			// 找出 li 中的超連結 href(#id)
+			var $this = $(this),
+				_clickTab = $this.find('a').attr('href');
+			// 把目前點擊到的 li 頁籤加上 .active
+			// 並把兄弟元素中有 .active 的都移除 class
+			$this.addClass('active').siblings('.active').removeClass('active');
+			// 淡入相對應的內容並隱藏兄弟元素
+			$(_clickTab).stop(false, true).fadeIn().siblings().hide();
+ 
+			return false;
+		}).find('a').focus(function(){
+			this.blur();
+		});
+	});
+});
+
+	</script>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script>
+function getIssueTitle_ajax(){
+  $.ajax({
+                url: 'https://stormy-fjord-31975.herokuapp.com/apis/vote?issue_id=585cfb320935491100db70b0',
+                method:"GET",
+                dataType:'json',
+                xhrFields: {
+                  withCredentials: true
+                },
+                success: function(response){
+                  console.log(response);
+                  document.getElementById("message").innerHTML = response.vote[0].reason;
+                },
+                 error:function(xhr, ajaxOptions, thrownError){ 
+                    alert(xhr.status); 
+                    alert(thrownError); 
+                 }
+            });
+}
+
+window.addEventListener("load", getIssueTitle_ajax());
+</script>
+	<body>
+		<div class="abgne_tab">
+		<ul class="tabs">
+			<li><a href="#tab1">討論</a></li>
+			<li><a href="#tab2">各方原因</a></li>
+			<li><a href="#tab3">分布</a></li>
+			<li><a href="#tab4">後續處理</a></li>			
+		</ul>
+ 
+		<div class="tab_container">
+		<!--tab1-->
+			<div id="tab1" class="tab_content">				
+				<div class="emo fa fa-thumbs-up"></div>
+				<div class="name">yeeee123</div>
+				<div class="message" id="message"></div>
+				<div class="timestamp">12/01 12:11</div>
+				<button type="button" class="btn btn-primary btn-lg fixed" data-toggle="modal" data-target="#myModal">留言</button>
+			</div>
+			<!--tab2-->
+			<div id="tab2" class="tab_content">
+				<div class="tab2-title">
+					<h3>聽聽投票的人說了什麼......</h2>
+					<br>
+				  	<div class="col-md-4">贊成
+					  	<div class="comment">觀自在菩薩。行深波若波羅蜜多時。照見五蘊皆空。度一切苦厄。舍利子。色不異空。空不異色。色即是空。空即是色。受想行識。亦復如是。舍利子。是諸法空相。不生不滅。不垢不淨。不增不減。是故空中無色。無受想行識。無眼耳鼻舌身意。無色身香味觸法。無眼界。乃至無意識界。無無明。亦無無明盡。乃至無老死。亦無老死盡。無苦集滅道。無智。亦無得。以無所得得故。菩提薩埵。依般若波羅蜜多故。心無罣礙。無罣礙故。遠離顛倒夢想。究竟涅盤。三世諸佛。依波若波羅蜜多故。得阿藐多羅三藐三菩提。故知般若波羅蜜多。是大神咒。是大明咒。是無上咒。是無等等咒。能除一切苦。真實不虛。故說波若波羅蜜多咒。即說咒曰。揭諦揭諦。波羅揭諦。波羅僧揭諦。菩提薩婆訶。</div>
+					  	<div class="comment">樓上心經系?</div>
+				  	</div>
+				  	<div class="col-md-4">中立
+				  		<div class="comment">天布麼次，今親他利用或母電氣能真友老久來進登出總形：國大系思樂麼問做去將地樹作、維你我們，師為什那，會輕步省生一們些的間海學了；能大作以電回球地現廠美馬方，別到最刻親個神故靜西招國老北氣反大育發商告味必資始定可對謝度的！</div>
+					  	<div class="comment">搭啦啦啦啦啦啦啊啦啦啦啦</div>
+					</div>
+				  	<div class="col-md-4">反對
+				  		<div class="comment">天布麼次，今親他利用或母電氣能真友老久來進登出總形</div>
+					  	<div class="comment">現結從過計不太聞經是她！變連事成通，中財陸呢十母裝有他成綠上童不個。別到最刻親個神故靜西招國老北氣反大育發商告味必資始定可對謝度的！</div>
+				  	</div>
+				</div>
+			</div>
+			<!--tab3-->
+			<div id="tab3" class="tab_content">
+				<div class="tag-container">
+					<label class="classify"> 分類 </label>
+						<button class="tag-btn classify-tag-btn">年級</button>
+						<button class="tag-btn classify-tag-btn">學院</button>
+						<button class="tag-btn classify-tag-btn">職位</button>				
+					<br>
+					<label class="vote"> 意見 </label>
+						<button class="tag-btn vote-tag-btn">贊成</button>
+						<button class="tag-btn vote-tag-btn">中立</button>
+						<button class="tag-btn vote-tag-btn">反對</button>
+				</div>
+				<br>
+				<div class="chart-container">
+					<div class="col-md-6">分類長條圖
+						<img style="text-align:center;width:100%;height:300px;background-color: grey;">
+					</div>
+					<div class="col-md-6">意見長條圖
+						<img style="text-align:center;width:100%;height:300px;background-color: grey;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Button trigger modal -->
+
+
+<!-- 留言視窗 -->
+<div class="modal fade fade-window" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">留言立場 :</h4>
+        <div class="icon-container">
+        	<button class="icon fa fa-circle" style="color:grey;"></button>
+	        <button class="icon fa fa-thumbs-up" style="color:#452DE1;"></button>
+	        <button class="icon fa fa-thumbs-down" style="color:#D02715;"></button>
+        </div>        
+      </div>
+      <div class="modal-body">
+        <textarea class="text">輸入留言</textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">送出</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	</body>
+
+</html>
