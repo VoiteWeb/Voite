@@ -67,15 +67,15 @@ function randomNum( min, max) {
 // --- 讀取卡片的資訊 ---
 
 function emphText(textToEmph,color) {
-	if ( color = 'green' ) {
+	if ( color == 'green' ) {
 		// #137300: 墨綠色
 		return '<b style="color: #137300;">' + textToEmph.toString() + '</b>';
 	} 
-	else if ( color = 'yellow' ) {
+	else if ( color == 'yellow' ) {
 		return '<b style="color: orange;">'+ textToEmph.toString() +'</b>';
 		// return '<b style="color: orange; font-size: 22px;">'+ textToEmph.toString() +'</b>';
 	}
-	else if ( color = 'red' ) {
+	else if ( color == 'red' ) {
 		return '<b style="color: red;">'+ textToEmph.toString() +'</b>';
 		// return '<b style="color: red; font-size: 28px;">'+ textToEmph.toString() +'</b>';
 	}
@@ -138,6 +138,7 @@ function getCardsInfo(){
 		success: function(response){
 
 			// debug
+			console.log("%cSuccesfully get data from database!","font-weight: bold; color: blue");
 			// alert("Succesfully get data from database! reponse issueList length: " + response.issueList.length );
 			for(let i=0;i<response.issueList.length;i++){
 				let card = "#card" + i;
