@@ -83,17 +83,16 @@ function emphText(textToEmph,color) {
 }
 
 function getDaysLeftHtml(response, issueIndex){
-	// let Time = {
-	// 	year, month, date, hour, minute, second
-	// };
+
 	// 計算出此議題所剩餘的時間
-	// 所剩餘的時間 = 議題存活時間(duration?) - ( 現在時間 - 議題發起時間(createdAt) )
+	// 所剩餘的時間 = 議題存活時間(duration?) - ( 現在時間 - 議題發起時間(launchDate) )
 	// 格式: 年-月-日-時-分-秒， e.g. 2017-01-22T05:19:17.153Z
 	// alert( response.issueList[issueIndex].launchDate );	// debug
 	// 此regex可將數字從字串中取出，若有多個數字則會以array的方式回傳
 	let tArr = response.issueList[issueIndex].launchDate.match( /\d+/g );	
 	// Date() usage: var d = new Date(year, month, day, hours, minutes, seconds, milliseconds);
-	let launchDate = new Date( tArr[0], tArr[1], tArr[2], tArr[3], tArr[4], tArr[5] );	// 根據launchDate先計算出創立的date資訊
+	// 根據response的launchDate先計算出創立的date資訊
+	let launchDate = new Date( tArr[0], tArr[1], tArr[2], tArr[3], tArr[4], tArr[5] );	
 	let dueDate = new Date();
 	// 再根據launchDate和duration計算出dueDate
 	dueDate.setDate( launchDate.getDate() + response.issueList[issueIndex].duration );	
@@ -166,8 +165,8 @@ function getCardsInfo(){
 				$(card).find(".disagreeBar").delay( delayInterval + delayInterval * i ).animate({width: (100-agreeRatio)+"%"}, animationPeriod, "swing");
 
 				// test
-				let str = "SUMMARY:Dad's birthday";
-				console.log( str.match(/^SUMMARY\:(.)*$/gm) );
+				// let str = "SUMMARY:Dad's birthday";
+				// console.log( str.match(/^SUMMARY\:(.)*$/gm) );
 			}
 			
 		},
@@ -185,7 +184,6 @@ function getCardsInfo(){
 
 $(document).ready(function(){
 
-	// alert("debug");
 	generateCard(amountOfCard);
 	getCardsInfo();
 
