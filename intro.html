@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Issue Form</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+
+</head>
+
+<body>
+
+
+
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <br>
+            <a href="#about" class="" style="color:white;background-color:black;"></a>
+
+
+            </a> 
+        </div>
+        <div class="text-horizontal-center" style="position:absolute;right:25px;">
+
+            <a href="#about" class="btn btn-dark btn-lg" style="font-family:Microsoft JhengHei;">發起議題</a> 
+
+            <a href="#about" class="" style="color:black;margin:25px;font-weight:bold;font-family:Microsoft JhengHei;">登入</a>   
+
+            <a href="#about" class="" style="color:black;font-weight:bold;font-family:Microsoft JhengHei;">註冊</a> 
+        </div>
+    </header>
+
+            <sidebar class="sidebar" style="width:120px;float:left;font-family:Microsoft JhengHei;height:280px;text-align:center;line-height:30px;font-size:15px;color:black;">
+
+        </sidebar>
+
+
+    <!-- About -->
+    <section id="about" class="about">
+<div class="text-horizontal-center" style="text-align:center;">
+            <br>
+            <a href="#about" class="" style="color:white;margin:25px;font-family:Microsoft JhengHei;">最近議題</a>
+
+            <a href="#about" class="" style="color:white;margin:25px;font-family:Microsoft JhengHei;">熱門議題</a>   
+
+            <a href="#about" input type="button" style="width:50px;height:30px;background-color:lightgrey;border:10px;margin:5px;border-radius: 3px;">Tag</a> 
+            <a href="#about" class="" style="color:white;margin:5px;font-family:Microsoft JhengHei;">車管會</a>  
+            <a href="#about" class="" style="color:white;margin:5px;font-family:Microsoft JhengHei;">門禁</a>  
+            <a href="#about" class="" style="color:white;margin:5px;font-family:Microsoft JhengHei;">流浪狗</a>  
+            <a href="#about" class="" style="color:white;margin:5px;font-family:Microsoft JhengHei;">校園公車</a> 
+            <a>
+            <form style="float:right;">
+<select name="YourLocation" style="font-family:Microsoft JhengHei;border-radius: 10px;">
+　<option value="" style="font-family:Microsoft JhengHei;">投票中</option>
+　<option value="" style="font-family:Microsoft JhengHei;">已結束</option>
+　...
+</select>
+</form>
+            </a> 
+        </div>
+    </section>
+
+    <section style="margin:0 auto;background-position:center;font-family:Microsoft JhengHei;text-align:center;font-size:0.7cm;width: 70%;height: 200%;background-color: white;">
+    發起議題<br><br>
+<form action="get.php" method="get" style="font-family:Microsoft JhengHei;font-size:0.5cm;">
+<p style="position:absolute;left:300px;">議題名稱</p><br><br><input type='text' style="position:absolute;left:300px;"><br><br>
+
+<p style="position:absolute;left:300px;">議題截止日</p><br><br><input type='text' style="position:absolute;left:300px;"><br><br>
+<p style="position:absolute;left:300px;">內容說明</p><br><br><input type='text' style="width:300px;height:150px;position:absolute;left:300px;"><br><br><br><br><br><br>
+<a href="#about" class="btn btn-dark btn-lg" style="font-family:Microsoft JhengHei;position:absolute;left:300px;text-align:center;color:black;border:10px;margin:10px;">特色圖片上傳</a><br><br>
+<a href="#about" class="btn btn-dark btn-lg" style="font-family:Microsoft JhengHei;position:absolute;left:300px;text-align:center;color:black;border:10px;margin:10px;">參考文件上傳</a><br><br><br>
+<p><input type='submit' value='送出' style="border-radius:5px;background-color:yellow;"></p>
+</form>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>South Star Xelerator</strong>
+                    </h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; All Rights Reserved by South Star Xelerator 2016</p>
+                </div>
+            </div>
+        </div>
+        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    //#to-top button appears after scrolling
+    var fixed = false;
+    $(document).scroll(function() {
+        if ($(this).scrollTop() > 250) {
+            if (!fixed) {
+                fixed = true;
+                // $('#to-top').css({position:'fixed', display:'block'});
+                $('#to-top').show("slow", function() {
+                    $('#to-top').css({
+                        position: 'fixed',
+                        display: 'block'
+                    });
+                });
+            }
+        } else {
+            if (fixed) {
+                fixed = false;
+                $('#to-top').hide("slow", function() {
+                    $('#to-top').css({
+                        display: 'none'
+                    });
+                });
+            }
+        }
+    });
+    
+    </script>
+
+
+</body>
+
+</html>
