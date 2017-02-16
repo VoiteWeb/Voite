@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel=stylesheet type="text/css" href="style-login.css">
+    
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+
+
+  <script>
+ function get_logout(){
+
+    $.ajax({
+                  url: 'https://stormy-fjord-31975.herokuapp.com/logut',
+                  method:"GET",
+                  dataType:'json',
+                  xhrFields: {
+                    withCredentials: true
+                  },
+                  success: function(response){
+                    console.log(response);
+                  },
+                   error:function(xhr, ajaxOptions, thrownError){ 
+                      alert(xhr.status); 
+                      alert(thrownError); 
+                   }
+              });
+}
+  </script>
+  </head>
+
+  <body>
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" 
+  onClick="get_logout();">登出</button>
+
+<!-- 登出視窗 -->
+<div class="modal fade fade-window" id="myModal-logout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       <h3>已登出</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">確定</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

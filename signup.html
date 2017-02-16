@@ -19,15 +19,25 @@
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
 
-  <script>
- function post_login(){
+    <script>
 
+    $(function(){
+        
+    });
+
+</script>
+
+
+  <script>
+ function post_signup(){
+
+  var name = $('#name').val();
   var email = $('#email').val();
   var password = $('#password').val();
-  var datas={"email": email, "password": password};
+  var datas={"name": name, "email": email, "password": password};
 
     $.ajax({
-                  url: 'https://stormy-fjord-31975.herokuapp.com/login',
+                  url: 'https://stormy-fjord-31975.herokuapp.com/signup',
                   method:"POST",
                   dataType:'json',
                   data: datas,
@@ -36,9 +46,13 @@
                   },
                   success: function(response){
                     console.log(response);
-                    if(response.status == 400){
-                      $("#checkLogin-btn").attr("data-target","#myModal-fail");
-                      $("#checkLogin-btn").click();
+                    if(response.status == 200){
+                      $("#checkSignup-btn").attr("data-target","#myModal-success");
+                      $("#checkSignup-btn").click();
+                    }
+                    else if(response.status == 400){
+                      $("#checkSignup-btn").attr("data-target","#myModal-fail");
+                      $("#checkSignup-btn").click();
                     }
                   },
                    error:function(xhr, ajaxOptions, thrownError){ 
@@ -46,17 +60,18 @@
                       alert(thrownError); 
                    }
               });
-}
 
+    
+}
 
   </script>
   </head>
 
   <body>
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">登入</button>
-  <button type="button" class="btn btn-primary btn-lg hidden" id="checkLogin-btn" data-toggle="modal" data-target="#checkLogin">check</button>
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">註冊</button>
+  <button type="button" class="btn btn-primary btn-lg hidden" id="checkSignup-btn" data-toggle="modal" data-target="#checkSignup">check</button>
 
-<!-- 登入視窗 -->
+<!-- 註冊視窗 -->
 <div class="modal fade fade-window" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -66,28 +81,45 @@
       </div>
       <div class="modal-body">
         <div class="input">
-          <label>帳號 :
+          <label>ID:
+            <input type="text" class="inputbox" id="name">
+          </label>
+          <label>帳號:
             <input type="text" class="inputbox" id="email">
           </label>
           <br>
-          <label>密碼 :
+          <label>密碼:
             <input type="text" class="inputbox" id="password">
           </label>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-login" onClick="get_login();" data-dismiss="modal">登入</button>
+        <button type="button" class="btn btn-primary btn-login" data-dismiss="modal" onClick="post_signup();">註冊</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 登入失敗視窗 -->
+<!-- 註冊成功視窗 -->
+<div class="modal fade fade-window" id="myModal-success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       <h3>註冊成功!!VOITE歡迎你的加入!!</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">確定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 註冊失敗視窗 -->
 <div class="modal fade fade-window" id="myModal-fail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-       <h3>帳號或密碼輸入錯誤!!</h3>
+       <h3>註冊失敗!!此帳號名稱已被使用</h3>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">確定</button>

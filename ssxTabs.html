@@ -46,7 +46,12 @@
 			this.blur();
 		});
 	});
+
+	  
+
 });
+
+
 
 	</script>
 
@@ -66,7 +71,20 @@ function getIssueTitle_ajax(){
                 },
                 success: function(response){
                   console.log(response);
-                  document.getElementById("message").innerHTML = response.vote[0].reason;
+
+                  for(var vote in response.votes){
+                  	
+                  	if(response.votes[vote].position == 1){
+                  		document.getElementById("agree").innerHTML += '<div class="comment">' + response.votes[vote].reason + '</div>';
+                  	}
+                  	if(response.votes[vote].position == 2){
+                  		document.getElementById("neutral").innerHTML += '<div class="comment">' + response.votes[vote].reason + '</div>';
+                  	}
+                  	if(response.votes[vote].position == 3){
+                  		document.getElementById("disagree").innerHTML += '<div class="comment">' + response.votes[vote].reason + '</div>';
+                  	}
+                  }
+                              
                 },
                  error:function(xhr, ajaxOptions, thrownError){ 
                     alert(xhr.status); 
@@ -75,7 +93,173 @@ function getIssueTitle_ajax(){
             });
 }
 
+function getComments_ajax(){
+	$.ajax({
+                url: 'https://stormy-fjord-31975.herokuapp.com/apis/comment?issue_id=585cfb320935491100db70b0',
+                method:"GET",
+                dataType:'json',
+                xhrFields: {
+                  withCredentials: true
+                },
+                success: function(response){
+                  console.log(response);
+
+                  for(var comment in response.comments){
+                  	//變換icon圖示
+                  	if(response.comments[comment] != null){
+                  		document.getElementById("tab1").innerHTML += 
+                  		'<div id="'+response.comments[comment]._id+'">';
+                  		//position=1 贊成
+                  		if(response.comments[comment].position == 1){
+                  			document.getElementById("tab1").innerHTML += 
+                  			'<div class="emo fa fa-thumbs-up"></div>';
+                  		}
+                  		//position=2 反對
+                  		if(response.comments[comment].position == 2){
+                  			document.getElementById("tab1").innerHTML += 
+                  			'<div class="emo fa fa-thumbs-down"></div>';
+                  		}
+                  		//position=3 中立
+                  		if(response.comments[comment].position == 3){
+                  			document.getElementById("tab1").innerHTML += 
+                  			'<div class="emo fa fa-circle"></div>';
+                  		}
+                  		//印出留言內容及時間
+                  		document.getElementById("tab1").innerHTML += 
+                  		'<div class="name">yeeee123</div>'+
+                  		'<div class="message" id="'+ response.comments[comment]._id +'">'+response.comments[comment].content + '</div>';
+
+                  		//如果是自己的留言，就出現按鈕可以編輯跟刪除
+                  		if(response.user_id == response.comments[comment].user_id){
+                  		document.getElementById("tab1").innerHTML += 
+                  		'<div class=""><button class="mesg-change-btn" id="edit-btn" onClick="showEditSpace('+response.comments[comment]._id+');">Edit</button>';
+                  		//document.getElementById("tab1").innerHTML +=
+                  		//'<button class="btn mesg-change-btn" id="delete-btn" onClick="delComment_ajax();>Delete<button></div>';
+                  	}
+                  		document.getElementById("tab1").innerHTML +=
+                  		'<div class="timestamp">'+response.comments[comment].createdAt + '</div>'+
+                  		'</div>';
+                  	}
+                  	
+                  	
+                  }
+
+                //檢查是否為登入  
+                if(response.auth == 0){
+                	//沒登入的話彈出叫你登入的視窗
+                	$("#sentComment-btn").attr("data-target","#myModal-notLogin");
+                }
+                else if(response.auth == 1){
+                	//有登入的話彈出留言視窗
+                	$("#sentComment-btn").attr("data-target","#myModal");
+                }
+                              
+                },
+                 error:function(xhr, ajaxOptions, thrownError){ 
+                    alert(xhr.status); 
+                    alert(thrownError); 
+                 }
+            });
+}
+
+function postComments_ajax(datas){
+	$.ajax({
+                url: 'https://stormy-fjord-31975.herokuapp.com/apis/comment',
+                method:"POST",
+                dataType:'json',
+                xhrFields: {
+                  withCredentials: true
+                },                
+				data:datas,
+
+                success: function(response){
+                  console.log(response);
+                  //document.getElementById("message").innerHTML += response.content;                             
+                },
+                 error:function(xhr, ajaxOptions, thrownError){ 
+                    alert(xhr.status); 
+                    alert(thrownError); 
+                 }
+			});
+}	
+
+function messageGo(){
+	var message = $('#newMessage').val();
+	//var position = position();
+	//var issue_id = $('#thisIssue_id').val();
+	var input = {"issue_id": '585cfb320935491100db70b0', "position": 3, "content": message,};
+	postComments_ajax(input);
+}
+
+function position(){//看哪個被click就設成多少
+	$('#agree').click(function(){
+		var position = 1;
+		return position;
+	});
+	$('#disagree').click(function(){
+		var position = 2;
+		return position;
+	});
+	$('#neutral').click(function(){
+		var position = 3;
+		return position;
+	});
+}
+
+function putComment_ajax(id){
+	var putMes = $('#putMessage').val();
+	var datas = {"issue_id": '585cfb320935491100db70b0', "position": 2, "content": putMes,};
+
+	$.ajax({ 
+                url: 'https://stormy-fjord-31975.herokuapp.com/apis/comment/58a56f509cb31f1100da1c4a',
+                method:"PUT",
+                dataType:'json',
+                xhrFields: {
+                  withCredentials: true
+                },                
+				data:datas,
+
+                success: function(response){
+                  console.log(response);
+                  //document.getElementById("message").innerHTML += response.content;                             
+                },
+                 error:function(xhr, ajaxOptions, thrownError){ 
+                    alert(xhr.status); 
+                    alert(thrownError); 
+                 }
+			});
+}
+
+function delComment_ajax(){
+	$.ajax({ 
+                url: 'https://stormy-fjord-31975.herokuapp.com/apis/comment/  :id',
+                method:"DELETE",
+                dataType:'json',
+                xhrFields: {
+                  withCredentials: true
+                },                
+                success: function(response){
+                  console.log(response);
+                  //document.getElementById("message").innerHTML += response.content;                             
+                },
+                 error:function(xhr, ajaxOptions, thrownError){ 
+                    alert(xhr.status); 
+                    alert(thrownError); 
+                 }
+			});
+}
+
+function showEditSpace(id){
+	//putComment_ajax(id);
+	alert(id);
+	$('#'+id).hide();
+	$('#'+id).after('<input type="text">');
+
+}
+
 window.addEventListener("load", getIssueTitle_ajax());
+//window.addEventListener("load", messageGo());
+window.addEventListener("load", getComments_ajax());
 </script>
 	<body>
 		<div class="abgne_tab">
@@ -88,27 +272,24 @@ window.addEventListener("load", getIssueTitle_ajax());
  
 		<div class="tab_container">
 		<!--tab1-->
-			<div id="tab1" class="tab_content">				
-				<div class="emo fa fa-thumbs-up"></div>
-				<div class="name">yeeee123</div>
-				<div class="message" id="message"></div>
-				<div class="timestamp">12/01 12:11</div>
-				<button type="button" class="btn btn-primary btn-lg fixed" data-toggle="modal" data-target="#myModal">留言</button>
+			<div id="tab1" class="tab_content">		
+				
+				<button type="button" class="btn btn-primary btn-lg fixed" id="sentComment-btn" data-toggle="modal" data-target="#myModal" >留言</button>
 			</div>
 			<!--tab2-->
 			<div id="tab2" class="tab_content">
 				<div class="tab2-title">
 					<h3>聽聽投票的人說了什麼......</h2>
 					<br>
-				  	<div class="col-md-4">贊成
+				  	<div class="col-md-4" id="agree">贊成
 					  	<div class="comment">觀自在菩薩。行深波若波羅蜜多時。照見五蘊皆空。度一切苦厄。舍利子。色不異空。空不異色。色即是空。空即是色。受想行識。亦復如是。舍利子。是諸法空相。不生不滅。不垢不淨。不增不減。是故空中無色。無受想行識。無眼耳鼻舌身意。無色身香味觸法。無眼界。乃至無意識界。無無明。亦無無明盡。乃至無老死。亦無老死盡。無苦集滅道。無智。亦無得。以無所得得故。菩提薩埵。依般若波羅蜜多故。心無罣礙。無罣礙故。遠離顛倒夢想。究竟涅盤。三世諸佛。依波若波羅蜜多故。得阿藐多羅三藐三菩提。故知般若波羅蜜多。是大神咒。是大明咒。是無上咒。是無等等咒。能除一切苦。真實不虛。故說波若波羅蜜多咒。即說咒曰。揭諦揭諦。波羅揭諦。波羅僧揭諦。菩提薩婆訶。</div>
 					  	<div class="comment">樓上心經系?</div>
 				  	</div>
-				  	<div class="col-md-4">中立
+				  	<div class="col-md-4" id="neutral">中立
 				  		<div class="comment">天布麼次，今親他利用或母電氣能真友老久來進登出總形：國大系思樂麼問做去將地樹作、維你我們，師為什那，會輕步省生一們些的間海學了；能大作以電回球地現廠美馬方，別到最刻親個神故靜西招國老北氣反大育發商告味必資始定可對謝度的！</div>
 					  	<div class="comment">搭啦啦啦啦啦啦啊啦啦啦啦</div>
 					</div>
-				  	<div class="col-md-4">反對
+				  	<div class="col-md-4" id="disagree">反對
 				  		<div class="comment">天布麼次，今親他利用或母電氣能真友老久來進登出總形</div>
 					  	<div class="comment">現結從過計不太聞經是她！變連事成通，中財陸呢十母裝有他成綠上童不個。別到最刻親個神故靜西招國老北氣反大育發商告味必資始定可對謝度的！</div>
 				  	</div>
@@ -149,22 +330,35 @@ window.addEventListener("load", getIssueTitle_ajax());
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">留言立場 :</h4>
-        <div class="icon-container">
-        	<button class="icon fa fa-circle" style="color:grey;"></button>
-	        <button class="icon fa fa-thumbs-up" style="color:#452DE1;"></button>
-	        <button class="icon fa fa-thumbs-down" style="color:#D02715;"></button>
+        <div class="icon-container" >
+        	<button class="icon fa fa-circle" id="neutral" style="color:grey;"></button>
+	        <button class="icon fa fa-thumbs-up" id="agree" style="color:#452DE1;"></button>
+	        <button class="icon fa fa-thumbs-down" id="disagree" style="color:#D02715;"></button>
         </div>        
       </div>
       <div class="modal-body">
-        <textarea class="text">輸入留言</textarea>
+        <textarea class="text" id="newMessage">輸入留言</textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">送出</button>
+        <button type="button" class="btn btn-primary" onClick="messageGo();" data-dismiss="modal">送出</button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- 未登入留言視窗 -->
+<div class="modal fade fade-window" id="myModal-notLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">登入後才能夠留言哦!!!!</h4>         
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">確定</button>
+      </div>
+    </div>
+  </div>
+</div>
 	</body>
 
 </html>
