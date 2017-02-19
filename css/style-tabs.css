@@ -183,3 +183,14 @@ div.tab_container .tab_content h2 {
 	outline:none;
 	border-bottom: 2px solid #ffc832;
 }
+.black-btn{
+	font-family: Microsoft JhengHei;
+	border: none;
+	text-align: center;
+    text-decoration: none;
+    display: inline-block;
+	color:white;
+	background-color: black;
+	float:right;
+	padding: 10px 5px;
+}
