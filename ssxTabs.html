@@ -108,37 +108,37 @@ function getComments_ajax(){
                   	//變換icon圖示
                   	if(response.comments[comment] != null){
                   		document.getElementById("tab1").innerHTML += 
-                  		'<div id="'+response.comments[comment]._id+'">';
+                  		'<div id="message'+response.comments[comment]._id+'"></div>';
                   		//position=1 贊成
                   		if(response.comments[comment].position == 1){
-                  			document.getElementById("tab1").innerHTML += 
+                  			document.getElementById("message"+response.comments[comment]._id+"").innerHTML += 
                   			'<div class="emo fa fa-thumbs-up"></div>';
                   		}
                   		//position=2 反對
-                  		if(response.comments[comment].position == 2){
-                  			document.getElementById("tab1").innerHTML += 
+                  		else if(response.comments[comment].position == 2){
+                  			document.getElementById("message"+response.comments[comment]._id+"").innerHTML += 
                   			'<div class="emo fa fa-thumbs-down"></div>';
                   		}
                   		//position=3 中立
-                  		if(response.comments[comment].position == 3){
-                  			document.getElementById("tab1").innerHTML += 
+                  		else if(response.comments[comment].position == 3){
+                  			document.getElementById("message"+response.comments[comment]._id+"").innerHTML += 
                   			'<div class="emo fa fa-circle"></div>';
                   		}
                   		//印出留言內容及時間
-                  		document.getElementById("tab1").innerHTML += 
+                  		document.getElementById("message"+response.comments[comment]._id+"").innerHTML += 
                   		'<div class="name">yeeee123</div>'+
-                  		'<div class="message" id="'+ response.comments[comment]._id +'">'+response.comments[comment].content + '</div>';
+                  		'<div class="content" id="'+ response.comments[comment]._id +'">'+response.comments[comment].content + '</div>';
 
                   		//如果是自己的留言，就出現按鈕可以編輯跟刪除
                   		if(response.user_id == response.comments[comment].user_id){
-                  		document.getElementById("tab1").innerHTML += 
-                  		'<div class=""><button class="mesg-change-btn" id="edit-btn" onClick="showEditSpace('+response.comments[comment]._id+');">Edit</button>';
-                  		//document.getElementById("tab1").innerHTML +=
-                  		//'<button class="btn mesg-change-btn" id="delete-btn" onClick="delComment_ajax();>Delete<button></div>';
-                  	}
-                  		document.getElementById("tab1").innerHTML +=
+	                  		document.getElementById("message"+response.comments[comment]._id+"").innerHTML += 
+	                  		'<button class="black-btn" id="'+response.comments[comment]._id+'" onClick="showEditSpace();">Edit</button>';
+	                  		document.getElementById("message"+response.comments[comment]._id+"").innerHTML +=
+	                  		'<button class="black-btn" id="delete-btn" onClick="delComment_ajax();">Delete</button>';
+                  		}
+                  		document.getElementById("message"+response.comments[comment]._id+"").innerHTML +=
                   		'<div class="timestamp">'+response.comments[comment].createdAt + '</div>'+
-                  		'</div>';
+                  		'<br>';
                   	}
                   	
                   	
@@ -208,10 +208,11 @@ function position(){//看哪個被click就設成多少
 
 function putComment_ajax(id){
 	var putMes = $('#putMessage').val();
-	var datas = {"issue_id": '585cfb320935491100db70b0', "position": 2, "content": putMes,};
+	//var putMes = '345';
+	var datas = {"issue_id": '585cfb320935491100db70b0', "position": 1, "content": putMes,};
 
 	$.ajax({ 
-                url: 'https://stormy-fjord-31975.herokuapp.com/apis/comment/58a56f509cb31f1100da1c4a',
+                url: 'https://stormy-fjord-31975.herokuapp.com/apis/comment/'+id,
                 method:"PUT",
                 dataType:'json',
                 xhrFields: {
@@ -231,8 +232,9 @@ function putComment_ajax(id){
 }
 
 function delComment_ajax(){
+	var id = '58a90a929e34d611006ae44b';
 	$.ajax({ 
-                url: 'https://stormy-fjord-31975.herokuapp.com/apis/comment/  :id',
+                url: 'https://stormy-fjord-31975.herokuapp.com/apis/comment/'+id,
                 method:"DELETE",
                 dataType:'json',
                 xhrFields: {
@@ -249,12 +251,14 @@ function delComment_ajax(){
 			});
 }
 
-function showEditSpace(id){
-	//putComment_ajax(id);
-	alert(id);
-	$('#'+id).hide();
-	$('#'+id).after('<input type="text">');
-
+function showEditSpace(){//抓不到id，桑心
+	var input = '58a90d5f9e34d611006ae44c';
+	//putComment_ajax(input);
+	//var id = $(this).attr("id");
+        //var id = $(this).parent().find('.message').attr("id");
+	$('#'+input).hide();
+	$('#'+input).after('<input type="text" class="" id="putMessage">');
+	$('#putMessage').after("<button id='submit' class='black-btn' onClick='putComment_ajax();'>送出</button>");
 }
 
 window.addEventListener("load", getIssueTitle_ajax());
