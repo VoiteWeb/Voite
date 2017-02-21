@@ -2,6 +2,7 @@
 body {
     background: white;
 }
+
 .transition { transition: .7s cubic-bezier(.3, 0, 0, 1.3) }
 .card {
     background-color: #fff;

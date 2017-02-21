@@ -111,7 +111,7 @@
         </div>
     </section>
 
-    <section style="margin:0 auto;background-position:center;font-family:Microsoft JhengHei;text-align:center;font-size:0.7cm;width: 50%;height: 80%;background-color: lightgrey;">
+    <section style="margin:0 auto;background-position:center;font-family:Microsoft JhengHei;text-align:center;font-size:0.7cm;width: 50%;height: 100%;background-color: lightgrey;">
         
         <div class="tagBtn_container"></div>
         <div class="card_container"></div>
@@ -217,6 +217,8 @@
 
     <!-- Custom Js for showing issues -->
     <script>
+
+        // This function is for development
         function generateButton(){
             // Generate show all issues button
             let showAll_btn = document.createElement("button");
@@ -227,6 +229,7 @@
             .addClass("button")
             .html('Show all issues')
             .on("click", function(event){
+                loadingCardAnimation();
                 $.ajax({
                     url: 'https://stormy-fjord-31975.herokuapp.com/apis/issue',
                     type: "GET",
@@ -259,6 +262,7 @@
                 .addClass("tag_button")
                 .html(buttonHTML)
                 .on("click", function(event){
+                    loadingCardAnimation();
                     $.ajax({
                         url: 'https://stormy-fjord-31975.herokuapp.com/apis/issue?tags_list=' + tagName,
                         type: "GET",
@@ -293,6 +297,7 @@
                 .addClass("tag_button")
                 .html(buttonHTML)
                 .on("click", function(event){
+                    loadingCardAnimation();
                     $.ajax({
                         url: 'https://stormy-fjord-31975.herokuapp.com/apis/issue?tags_list=' + tagName,
                         type: "GET",
@@ -316,8 +321,15 @@
             
         }
 
+        function loadingCardAnimation() {
+            let loading = '<div class="loading"></div>';
+            $(".card_container").html(loading);  // 先將內容改成loading
+        }
+
         function showAllIssues(){
 
+            // 在ajax完成以前先顯示loading動畫
+            loadingCardAnimation();
             // 讀入各個卡片的資訊
             $.ajax({
                 url: 'https://stormy-fjord-31975.herokuapp.com/apis/issue',

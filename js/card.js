@@ -96,7 +96,7 @@ function getDaysLeftHtml(issueList, issueIndex){
 }
 
 function showCards( issueList ) {
-	// 先清空card_container裡面的卡片
+	// 先清空card_container裡面的內容
 	$(".card_container").html("");
 	// 根據所傳入的issueList來顯示卡片
 	for(let i=0;i<issueList.length;i++){
