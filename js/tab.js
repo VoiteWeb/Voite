@@ -28,8 +28,10 @@ $(function() {
 });
 
 function getIssue_ajax() {
+    var issue_id = getParameterByName('id');
+    var url = 'https://stormy-fjord-31975.herokuapp.com/apis/issue/' + issue_id;
     $.ajax({
-        url: 'https://stormy-fjord-31975.herokuapp.com/apis/issue/585cfb320935491100db70b0',
+        url: url,
         method: "GET",
         dataType: 'json',
         xhrFields: {
@@ -51,8 +53,10 @@ function getIssue_ajax() {
 }
 
 function getIssueTitle_ajax() {
+  var issue_id = getParameterByName('id');
+  var url = 'https://stormy-fjord-31975.herokuapp.com/apis/vote?issue_id=' + issue_id;
     $.ajax({
-        url: 'https://stormy-fjord-31975.herokuapp.com/apis/vote?issue_id=585cfb320935491100db70b0',
+        url: url,
         method: "GET",
         dataType: 'json',
         xhrFields: {
@@ -83,8 +87,10 @@ function getIssueTitle_ajax() {
 }
 
 function getComments_ajax() {
+  var issue_id = getParameterByName('id');
+  var url = 'https://stormy-fjord-31975.herokuapp.com/apis/comment?issue_id=' + issue_id;
     $.ajax({
-        url: 'https://stormy-fjord-31975.herokuapp.com/apis/comment?issue_id=585cfb320935491100db70b0',
+        url: url,
         method: "GET",
         dataType: 'json',
         xhrFields: {
@@ -173,6 +179,7 @@ function postComments_ajax(datas) {
         success: function(response) {
             console.log(response);
             //document.getElementById("message").innerHTML += response.content;
+            window.location.reload();
         },
         error: function(xhr, ajaxOptions, thrownError) {
             alert(xhr.status);
@@ -208,13 +215,12 @@ function setPosition(icon){
 function putComment_ajax(button) {
     var id = button.getAttribute("data-comment-id");
     var putMes = $('#putMessage').val();
-    //var putMes = '345';
+    var issue_id = getParameterByName('id');
     var datas = {
-        "issue_id": '585cfb320935491100db70b0',
+        "issue_id": issue_id,
         "position": 1,
         "content": putMes,
     };
-
     $.ajax({
         url: 'https://stormy-fjord-31975.herokuapp.com/apis/comment/' + id,
         method: "PUT",
@@ -223,13 +229,11 @@ function putComment_ajax(button) {
             withCredentials: true
         },
         data: datas,
-
         success: function(response) {
             console.log(response);
             $('#edit-form').remove();
             $('#' + id).text(putMes);
             $('#' + id).show();
-
         },
         error: function(xhr, ajaxOptions, thrownError) {
             alert(xhr.status);
@@ -265,7 +269,6 @@ function showEditSpace(id) {
     $('#edit-form').remove();
     $('.btn-list').hide();
     $('#' + id).hide();
-    console.log($('#' + id).text());
     $('#' + id).after('<form id="edit-form" class="edit-form"><input type="text" class="" id="putMessage" value=' + $('#' + id).text() + '>');
     $('#putMessage').after("<button id='submit' data-comment-id=" + id + " class='submit-btn' onClick='putComment_ajax(this);'>送出</button><span class='link-text' data-comment-id=" + id + " onClick='hideEditSpace(this)'>取消</span</form>");
 }
