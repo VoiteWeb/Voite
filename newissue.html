@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Voite</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="css/main.css" >
+    <link rel="stylesheet" type="text/css" href="css/style-card.css">
+    <link rel="stylesheet" type="text/css" href="css/style-login.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+  <!-- Global: Header -->
+  <header id="global-header" class="header">
+      <div id="header-topbar" class="topbar">
+          <div class="container">
+              <a id="header-logo" href="/">
+                  <img src="http://fakeimg.pl/350x60/00CED1/FFF/?text=img+placeholder">
+              </a>
+              <div id="header-personal-container" class="inline-right lineh-60">
+
+              </div>
+              <div id="header-function-container" class="inline-right lineh-60">
+                  <a href="/newissue" class="btn btn-main btn-lg" style="font-family:Microsoft JhengHei;">發起議題</a>
+              </div>
+          </div>
+      </div>
+      <div id="header-menu" class="bg-dark menu">
+          <div class="container">
+              <div id="category-menu" class="inline-left lineh-40">
+                  <ul id="button-list">
+                      <li class="list-item">
+                          <a href="">議題種類</a>
+                          <ul class="drop-menu">
+                              <li><a href="/archive?category_id=1">校方行政</a></li>
+                              <li><a href="/archive?category_id=2">學生活動</a></li>
+                          </ul>
+                      </li>
+                  </ul>
+              </div>
+              <div id="tag-menu" class="inline-right lineh-40 inline-list">
+                  <ul id="tag-list">
+                      <li id="tag-start">熱門： </li>
+
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <div class="container">
+      <h1>發布議題</h1>
+      <form action="" method="" accept-charset="utf-8">
+          <div class="input-group">
+              <span class="input-group-addon">議題標題</span>
+              <input type="text" id="title" class="form-control" name="title" value="">
+          </div>
+          <br>
+          <br>
+          <div class="radio-inline">
+              <label>
+                      <input type="radio" name="category_id" id="optionsRadios1" value="1" checked>校方行政
+                  </label>
+          </div>
+          <div class="radio-inline">
+              <label>
+                      <input type="radio" name="category_id" id="optionsRadios2" value="2" checked>校內活動
+                  </label>
+          </div>
+          <br>
+          <div class="radio-inline">
+              <label>
+                      <input type="radio" name="duration" id="optionsRadios3" value="3" checked>3天
+                  </label>
+          </div>
+          <div class="radio-inline">
+              <label>
+                      <input type="radio" name="duration" id="optionsRadios4" value="7" checked>7天
+                  </label>
+          </div>
+          <br><br>
+          <div class="input-group">
+              <label>Tags</label>
+              <input id='tags' type="text">
+          </div>
+          <br>
+          <br>
+          <div class="form-intro">
+              <label>150字內簡介</label>
+              <textarea class="form-control" rows="3" name="introduce"></textarea>
+          </div>
+          <br>
+          <div class="form-intro">
+              <label>參考資料</label>
+              <textarea class="form-control" rows="3" name="reference"></textarea>
+          </div>
+          <br>
+          <span id="message"></span>
+          <button class="btn waves-effect waves-light" onclick="sendIssue(); return false;">送出</button>
+      </form>
+  </div>
+  <!-- jQuery -->
+  <script src="js/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+  <script src="js/typeahead.js"></script>
+  <script src="js/issueForm.js"></script>
+  <script src="js/main.js"></script>

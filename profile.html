@@ -1,51 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Profile</title>
-	<!-- Material Design -->
-	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"> -->
-	<!-- Font-awesome cdn minified CSS -->
-	<link rel="stylesheet" href="css/style-card.css">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Voite</title>
+	<!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<!-- Bootstrap cdn minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="		sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+	<link href="css/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style-card.css">
+	<link rel="stylesheet" href="css/style-login.css">
 </head>
+
 <body>
-	<div class="tagBtn_container"></div>
-	<div class="card_container">
+	<!-- Global: Header -->
+	<header id="global-header" class="header">
+		<div id="header-topbar" class="topbar">
+			<div class="container">
+				<a id="header-logo" href="/">
+					<img src="http://fakeimg.pl/350x60/00CED1/FFF/?text=img+placeholder">
+				</a>
+				<div id="header-personal-container" class="inline-right lineh-60">
+				</div>
+				<div id="header-function-container" class="inline-right lineh-60">
+					<a href="/newissue" class="btn btn-main btn-lg" style="font-family:Microsoft JhengHei;">發起議題</a>
+				</div>
+			</div>
+		</div>
+		<div id="header-menu" class="bg-dark menu">
+			<div class="container">
+				<div id="category-menu" class="inline-left lineh-40">
+					<ul id="button-list">
+						<li class="list-item">
+							<a href="">議題種類</a>
+							<ul class="drop-menu">
+								<li><a href="/archive?category_id=1">校方行政</a></li>
+								<li><a href="/archive?category_id=2">學生活動</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div id="tag-menu" class="inline-right lineh-40 inline-list">
+					<ul id="tag-list">
+						<li id="tag-start">熱門： </li>
 
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
 
-	</div>
-	
-	<!-- Material Design -->
-	<!-- <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script> -->
+	<section id="">
+		<div class="container">
+			<div id="profile-box" class="well">
+				<h3><span class="fa fa-user"></span> 個人資訊</h3>
+			</div>
+		</div>
+	</section>
+
+	<section id="issue" class="cards-list">
+		<div class="container">
+			<div id="list-box" class="well">
+				<h2>已投票的議題</h2>
+				<div class="card_container"></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+			<div class="container">
+					<div class="row">
+							<div class="col-lg-10 col-lg-offset-1 text-center">
+									<p class="text-muted">Copyright &copy; All Rights Reserved by Voite 2016</p>
+							</div>
+					</div>
+			</div>
+			<a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+	</footer>
+
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- Custom js -->
 	<script src="js/card.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/profile.js"></script>
 	<script>
 		let PID = 'e8ca9bfc-eebf-4c2c-871a-af6560f91db9';
-		
 		$.ajax({
 			url: 'https://stormy-fjord-31975.herokuapp.com/apis/issue?vote_list=' + PID,
 			type: "GET",
 			dataType: 'json',
 			xhrFields: {
-			  withCredentials: true
+				withCredentials: true
 			},
-			success: function(response){
+			success: function(response) {
 				// debug
 				// console.log("%cSuccesfully show the cards having the tag 'Tainan'!","font-weight: bold; color: blue");
-				showCards( response.issueList );			
+				showCards(response.issueList);
 			},
-			error:function(xhr, ajaxOptions, thrownError){ 
-			    console.log("<id="+i+">" + "card status:" + ixhr.status); 
-			    console.log("error:" + thrownError); 
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log("<id=" + i + ">" + "card status:" + ixhr.status);
+				console.log("error:" + thrownError);
 			}
 		});
 	</script>
 </body>
+
 </html>

@@ -1,0 +1,286 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: lightgrey;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.btn-main {
+    margin-right: 20px;
+    color: #fff;
+    font-size: 1.0em;
+    text-align: center;
+    background-color: rgba(250, 205, 5, 1);
+}
+
+.inline-right {
+    display: inline-block;
+    float: right;
+}
+
+.inline-left {
+    display: inline-block;
+    float: left;
+}
+
+.lineh-60 {
+    line-height: 60px;
+}
+
+.lineh-40 {
+    line-height: 40px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.header {
+    padding-top: 0;
+    display: table;
+    position: right;
+    width: 100%;
+    height: 8%;
+    background-color: white;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.bg-dark {
+    background-color: rgba(0, 0, 0, 0.95);
+    border-color: #000000;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.menu {
+    position: relative;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.list-item {
+    cursor: pointer;
+}
+
+.list-item>a {
+    color: #fff;
+}
+
+.list-item li:hover {
+    background-color: #000;
+}
+
+.drop-menu {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    background-color: #fff;
+    color: #000;
+}
+
+.list-item, .drop-menu {
+    width: 100px;
+}
+
+.drop-menu a{
+  color: rgba(0,0,0,0.8);
+}
+
+.drop-menu li:hover a{
+  color: #fff;
+}
+
+.inline-list {
+    margin: 0 20px;
+}
+
+.inline-list li {
+    display: inline-block;
+    color: #fff;
+}
+
+.tag {
+    margin: 0 5px;
+}
+
+
+/*****************************************************
+ * Carousel
+ *****************************************************/
+
+#home-slides {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.carousel-control.left , .carousel-control.right{
+  background-image: none;
+}
+
+.glyphicon{
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    margin-top: -10px;
+    width: 30px;
+    height: 30px;
+    margin-top: -10px;
+    font-size: 50px;
+}
+
+#home-hero:empty{
+  height: 60vh;
+  background-color: black;
+}
+
+/*****************************************************
+ * Cards
+ *****************************************************/
+
+.card_container {
+    text-align: center;
+    min-height: 800px;
+}
+
+.loading {
+    /*主視覺黃色: #ffc832*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto;
+    border: 3px solid #ffc832;
+    border-right: 3px solid white;
+    border-bottom: 3px solid white;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    animation: loading 1s infinite linear;
+}
+
+@keyframes loading {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/*****************************************************
+ * Footer
+ *****************************************************/
+
+footer {
+    background-color: #000;
+}
+
+.text-muted {
+    margin: 20px 0;
+}
+
+
+
+/*****************************************************
+ * Page Issue
+ *****************************************************/
+
+.option{
+	border: 2px solid;
+	margin: 15px 15px;
+	height: 55px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 18px;
+}
+.vote{
+	display: flex;
+	justify-content: center;
+	/*align-items: center;*/
+
+}
+.vote_pic{
+	max-width: 200px;
+	display: flex;
+	justify-content: center;
+}
+
+.modal-dialog{
+  height: 100%;
+}
+
+.issue-comment{
+  padding: 0 20px;
+}
+
+
+/*****************************************************
+ * Page New Issue
+ *****************************************************/
+
+input {
+    min-width: 100px;
+}
+
+.tt-menu {
+    width: 100px;
+    margin: 12px 0;
+    padding: 8px 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.tt-suggestion {
+    padding: 3px 20px;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.tt-suggestion:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #0097cf;
+}
+
+.tt-suggestion.tt-cursor {
+    color: #fff;
+    background-color: #0097cf;
+}
+
+/*****************************************************
+ * Page Profile
+ *****************************************************/
+  .well{
+    background-color: #fff;
+  }
+
+ .well li{
+  padding: 10px 0;
+  list-style: none;
+  border-bottom: 1px solid gray;
+ }

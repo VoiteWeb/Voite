@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -116,7 +114,7 @@
             </div>
         </div>
     </div>
-    <!-- Global: Header <-->
+    <!-- Global: Header -->
     <header id="global-header" class="header">
         <div id="header-topbar" class="topbar">
             <div class="container">
@@ -127,7 +125,7 @@
 
                 </div>
                 <div id="header-function-container" class="inline-right lineh-60">
-                    <a class="btn btn-main btn-lg" style="font-family:Microsoft JhengHei;">發起議題</a>
+                    <a href="/newissue" class="btn btn-main btn-lg" style="font-family:Microsoft JhengHei;">發起議題</a>
                 </div>
             </div>
         </div>
@@ -153,46 +151,6 @@
             </div>
         </div>
     </header>
-    <!-- Section: Carousel -->
-    <section id="home-hero">
-        <div id="carousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel" data-slide-to="1"></li>
-                <li data-target="#carousel" data-slide-to="2"></li>
-                <li data-target="#carousel" data-slide-to="3"></li>
-            </ol>
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="/img/1000X600.png" alt="slide-1" >
-                </div>
-
-                <div class="item">
-                    <img src="/img/1000X600.png" alt="slide-2" >
-                </div>
-
-                <div class="item">
-                    <img src="/img/1000X600.png" alt="slide-3" >
-                </div>
-
-                <div class="item">
-                    <img src="/img/1000X600.png" alt="slide-4" >
-                </div>
-            </div>
-
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </section>
     <!-- Section: Home Issues -->
     <section id="issue" class="navbar">
         <!-- <div class="text-horizontal-center" style="text-align:center;">
@@ -209,6 +167,7 @@
             </a>
         </div> -->
         <div class="tagBtn_container"></div>
+        <h2 id="message" class="text-center"></h2>
         <div class="card_container text-center"></div>
     </section>
 
@@ -218,7 +177,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <p class="text-muted">Copyright &copy; All Rights Reserved by Voite 2016</p>
+                    <p class="text-muted">Copyright &copy; All Rights Reserved by South Star Xelerator 2016</p>
                 </div>
             </div>
         </div>
@@ -230,13 +189,20 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/card.js"></script>
-    <script src="js/main.js"></script>
+  	<script src="js/main.js"></script>
+    <!-- Custom Theme JavaScript -->
     <script>
-        function showAllIssues() {
+        function showIssues() {
             loadingCardAnimation();
+            const tag_name = getParameterByName('tag');
+            const category_id = getParameterByName('category_id');
+            const query_key = (tag_name&&'tags_list')||(category_id&&'category_id');
+            const query_value = tag_name||category_id;
+            const url = 'https://stormy-fjord-31975.herokuapp.com/apis/issue?' + query_key + '=' + query_value;
             // 讀入各個卡片的資訊
+            console.log(url);
             $.ajax({
-                url: 'https://stormy-fjord-31975.herokuapp.com/apis/issue',
+                url: url,
                 type: "GET",
                 dataType: 'json',
                 xhrFields: {
@@ -244,20 +210,24 @@
                 },
                 success: function(response) {
                     // debug
-                    // console.log("%cSuccesfully get data from database!","font-weight: bold; color: blue");
-                    showCards(response.issueList);
+                    if(response.issueList.length!=0){
+                      showCards(response.issueList);
+                    } else {
+                      $('#message').text('目前無此類別議題!');
+                      $('.loading').remove();
+                    }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     console.log("<id=" + i + ">" + "card status:" + ixhr.status);
                     console.log("error:" + thrownError);
                 }
             });
+
+
         }
         // --- Main ---
-
         $(document).ready(function() {
-            showAllIssues();
-            carouselSetup();
+            showIssues();
         });
     </script>
 </body>

@@ -4,14 +4,14 @@
 // 	->暫時先將各位數剩餘天數字體設為一樣了，之後再想辦法
 // 2. bar的"贊成"與"反對"的字樣在動畫時會跟著跑(雖然這樣子看起來是還不錯看0_0)
 
-// --- 顯示卡片 --- 
+// --- 顯示卡片 ---
 
 // For the animation of the progress bars. In ms.
-let delayInterval = 500;	
+let delayInterval = 500;
 let animationPeriod = 600;
 
 let cardHTML = '<!-- Card Picture -->\
-				<div class="card_picture transition"></div>\
+				<a><div class="card_picture transition"></div>\
 				<!-- Title -->\
 				<h2 class="title transition">您覺得車管會收300元合理嗎?</h2>\
 				<!-- Description -->\
@@ -30,7 +30,7 @@ let cardHTML = '<!-- Card Picture -->\
 						<i class="fa fa-check-square-o" aria-hidden="true">  Err  </i>\
 						<i class="fa fa-comment" aria-hidden="true">  Err  </i> \
 					</p>\
-				</div>';
+				</div></a>';
 
 // For cards' development
 function randomNum( min, max ) {
@@ -46,7 +46,7 @@ function emphText(textToEmph,color) {
 	if ( color == 'green' ) {
 		// #137300: 墨綠色
 		return '<b style="color: #137300;">' + textToEmph.toString() + '</b>';
-	} 
+	}
 	else if ( color == 'yellow' ) {
 		return '<b style="color: orange;">'+ textToEmph.toString() +'</b>';
 		// return '<b style="color: orange; font-size: 22px;">'+ textToEmph.toString() +'</b>';
@@ -65,13 +65,13 @@ function getDaysLeftHtml(issueList, issueIndex){
 	// 格式: 年-月-日-時-分-秒， e.g. 2017-01-22T05:19:17.153Z
 	// alert( issueList[issueIndex].launchDate );	// debug
 	// 此regex可將數字從字串中取出，若有多個數字則會以array的方式回傳
-	let tArr = issueList[issueIndex].launchDate.match( /\d+/g );	
+	let tArr = issueList[issueIndex].launchDate.match( /\d+/g );
 	// Date() usage: var d = new Date(year, month, day, hours, minutes, seconds, milliseconds);
 	// 根據議題的launchDate先計算出date資訊
-	let launchDate = new Date( tArr[0], tArr[1], tArr[2], tArr[3], tArr[4], tArr[5] );	
+	let launchDate = new Date( tArr[0], tArr[1], tArr[2], tArr[3], tArr[4], tArr[5] );
 	let dueDate = new Date();
 	// 再根據launchDate和duration計算出dueDate
-	dueDate.setDate( launchDate.getDate() + issueList[issueIndex].duration );	
+	dueDate.setDate( launchDate.getDate() + issueList[issueIndex].duration );
 	let today = new Date();
 	let timeDiff = ( dueDate.getTime() - today.getTime() ) / 1000;	// /1000: ms to sec
 	let dayDiff = Math.floor(timeDiff / 86400);
@@ -96,7 +96,7 @@ function getDaysLeftHtml(issueList, issueIndex){
 }
 
 function showCards( issueList ) {
-	// 先清空card_container裡面的卡片
+	// 先清空card_container裡面的內容
 	$(".card_container").html("");
 	// 根據所傳入的issueList來顯示卡片
 	for(let i=0;i<issueList.length;i++){
@@ -104,20 +104,25 @@ function showCards( issueList ) {
 		// 產生每個卡片的模板
 		let card = document.createElement("div");
 		// Set up the id and the class of the card
+		let issueLink = '/issue?id=' + issueList[i]._id;
+		$(card).click(function(){
+			window.location.href = issueLink;
+		});
+
 		$(card)
 		.attr("id", "card"+i )
 		.addClass("card transition")
 		.html(cardHTML);
-		
+
 		//開始填卡片的各個資訊
 		$(card).find(".title").text( issueList[i].title );		// title
-		$(card).find(".card_content").text( issueList[i].introduce );	// introduction
+		$(card).find(".card_content").text( issueList[i].introduce.substring(0,40) + ' ...' );	// introduction
 		$(card).find(".days_left").html( getDaysLeftHtml( issueList,i ) );	// 剩餘天數
-		$(card).find(".fa.fa-comment").text(" " + issueList[i].comments + " ");	// 留言數
+		$(card).find(".fa.fa-comment").text(" " + issueList[i].totalComments + " ");	// 留言數
 		$(card).find(".fa.fa-check-square-o").text(" " + issueList[i].votes + " ");	// 投票數
-		
+
 		// 顯示agreeRatioBar的動畫
-		// Randomize days left, the amounts of the comments, vote ratio, and the amount of votes. 
+		// Randomize days left, the amounts of the comments, vote ratio, and the amount of votes.
 		// let agreeRatio = 投票贊成數/反對數 * 100;
 		let agreeRatio = randomNum(0,100);
 		/* 防止一些顯示的bug QAQ (因為目前只要width>98%或<2%便會有顯示錯誤的問題，
@@ -128,9 +133,9 @@ function showCards( issueList ) {
 			agreeRatio = 2;
 		}
 		$(card).find(".agreeBar").delay( delayInterval/2 + delayInterval * i ).animate({width: agreeRatio+"%"}, animationPeriod, "swing");
-		
+
 		$(card).find(".disagreeBar").delay( delayInterval + delayInterval * i ).animate({width: (100-agreeRatio)+"%"}, animationPeriod, "swing");
-		
+
 		// append the card to the card container
 		$(".card_container").append(card);
 

@@ -1,0 +1,14 @@
+
+
+#issue-info .container{
+  background-color: #fff;
+}
+
+#reference .wrapper{
+  background-color: lightgray;
+  padding: 20px;
+}
+
+#thumbnail img{
+  width: 100%;
+}
