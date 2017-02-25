@@ -116,7 +116,7 @@ function showCards( issueList ) {
 
 		//開始填卡片的各個資訊
 		$(card).find(".title").text( issueList[i].title );		// title
-		$(card).find(".card_content").text( issueList[i].introduce.substring(0,40) + ' ...' );	// introduction
+		$(card).find(".card_content").text( issueList[i].introduce.substring(0,15) + ' ...' );	// introduction
 		$(card).find(".days_left").html( getDaysLeftHtml( issueList,i ) );	// 剩餘天數
 		$(card).find(".fa.fa-comment").text(" " + issueList[i].totalComments + " ");	// 留言數
 		$(card).find(".fa.fa-check-square-o").text(" " + issueList[i].votes + " ");	// 投票數
