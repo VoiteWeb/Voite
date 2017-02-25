@@ -82,7 +82,7 @@
     font-family: "微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", AppleGothic, Dotum, Lucida Grande, Verdana Sans-serif;
     /*font-family: "Arial", "新細明體", PMingLiU, sans-serif;*/
     /*font-family: "Arial Black", Gadget, sans-serif;*/
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
 /*    margin-top: 190px;*/
     position: relative;
@@ -95,7 +95,7 @@
     font-family: "微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", AppleGothic, Dotum, Lucida Grande, Verdana Sans-serif;
     /*font-family: "Arial Black", Gadget, sans-serif;*/
     /*font-family: 'Raleway', sans-serif;*/
-    font-size: 14px;
+    font-size: 18px;
     font-weight: normal;
     /*margin-top: 230px;*/
     position: relative;
@@ -119,7 +119,7 @@
     margin: 0 auto;
     text-align: center;
     position: absolute;
-    bottom: 48px;
+    bottom: 54px;
     /*將left和right設成0來水平置中rateBar*/
     left: 0;
     right: 0;
@@ -159,12 +159,14 @@
     display: block;
     float: right;
     font-family: "malgun gothic", simhei;
+    font-size: 15px;
     color: #ffc832;
 }
 .disagreeText {
     display: block;
     float: left;
     font-family: "malgun gothic", simhei;
+    font-size: 15px;
     color: #525252;
 }
 
@@ -181,6 +183,7 @@
 
 .days_left {
     font-family: "微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", AppleGothic, Dotum, Lucida Grande, Verdana Sans-serif;
+    font-size: 16px;
     position: relative;
     display: block;
     float: left;
@@ -192,6 +195,7 @@
 
 .right_corner_text {
     font-family: "微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", AppleGothic, Dotum, Lucida Grande, Verdana Sans-serif;
+    font-size: 16px;
     position: relative;
     display: block;
     float: right;
